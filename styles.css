@@ -1,0 +1,560 @@
+:root {
+  --ink: #f6f0df;
+  --muted: rgba(246, 240, 223, 0.74);
+  --night: #091122;
+  --deep: #101a31;
+  --jade: #6ad8ce;
+  --gold: #f2c66d;
+  --rose: #d98b8b;
+  --line: rgba(246, 240, 223, 0.18);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background: var(--night);
+  font-family: "Be Vietnam Pro", system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+body.gate-open .gate {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(1.04);
+}
+
+#auraCanvas {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: grid;
+  place-items: center;
+  min-height: 100svh;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(242, 198, 109, 0.18), transparent 26rem),
+    linear-gradient(rgba(9, 17, 34, 0.58), rgba(9, 17, 34, 0.9)),
+    url("assets/tien-hiep-hero.png") center / cover no-repeat;
+  transition: opacity 1s ease, transform 1.4s ease;
+}
+
+.gate__mist {
+  position: absolute;
+  inset: auto -10% 0;
+  height: 42%;
+  background:
+    radial-gradient(ellipse at 30% 70%, rgba(255, 255, 255, 0.28), transparent 36%),
+    radial-gradient(ellipse at 68% 76%, rgba(106, 216, 206, 0.2), transparent 38%),
+    linear-gradient(transparent, rgba(9, 17, 34, 0.86));
+  filter: blur(10px);
+  animation: drift 16s ease-in-out infinite alternate;
+}
+
+.gate__content {
+  width: min(92vw, 760px);
+  text-align: center;
+  padding: 2rem;
+  position: relative;
+}
+
+.eyebrow {
+  margin: 0 0 0.9rem;
+  color: var(--gold);
+  font-size: clamp(0.75rem, 1.8vw, 0.88rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: "Playfair Display", Georgia, serif;
+  letter-spacing: 0;
+}
+
+h1 {
+  font-size: clamp(3.8rem, 13vw, 9rem);
+  line-height: 0.9;
+  text-shadow: 0 0 38px rgba(242, 198, 109, 0.45);
+}
+
+h2 {
+  font-size: clamp(2.2rem, 7vw, 5.6rem);
+  line-height: 0.96;
+}
+
+p {
+  color: var(--muted);
+  font-size: clamp(1rem, 2vw, 1.15rem);
+  line-height: 1.8;
+}
+
+.gate__line {
+  max-width: 38rem;
+  margin: 1.5rem auto 2rem;
+}
+
+.gate__hint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  margin: 1rem auto 0;
+  color: rgba(246, 240, 223, 0.84);
+  font-size: clamp(0.82rem, 1.7vw, 0.96rem);
+  line-height: 1.5;
+  text-shadow: 0 0 18px rgba(9, 17, 34, 0.9);
+  animation: hintPulse 1.9s ease-in-out infinite;
+}
+
+.gate__hint::before {
+  content: "";
+  width: 0.48rem;
+  height: 0.48rem;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 18px rgba(242, 198, 109, 0.9);
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.primary-action,
+.ghost-action,
+.audio-toggle {
+  min-height: 3rem;
+  border: 1px solid rgba(246, 240, 223, 0.34);
+  border-radius: 999px;
+  padding: 0.85rem 1.25rem;
+  color: var(--ink);
+  background: rgba(11, 23, 41, 0.62);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.28), inset 0 0 20px rgba(106, 216, 206, 0.1);
+  font: 700 0.9rem/1 "Be Vietnam Pro", sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+
+.primary-action {
+  background: linear-gradient(135deg, rgba(242, 198, 109, 0.96), rgba(106, 216, 206, 0.92));
+  color: #091122;
+  border-color: transparent;
+}
+
+.primary-action:hover,
+.ghost-action:hover,
+.audio-toggle:hover {
+  transform: translateY(-2px);
+  border-color: rgba(242, 198, 109, 0.72);
+}
+
+.site-shell {
+  min-height: 100svh;
+  background:
+    linear-gradient(rgba(9, 17, 34, 0.28), rgba(9, 17, 34, 0.92)),
+    url("assets/tien-hiep-hero.png") top center / 100% auto no-repeat,
+    radial-gradient(circle at 80% 20%, rgba(217, 139, 139, 0.12), transparent 30rem),
+    linear-gradient(180deg, var(--night), #11182c 52%, #070b13);
+}
+
+.section-panel {
+  position: relative;
+  min-height: 100svh;
+  display: grid;
+  align-items: center;
+  padding: clamp(4rem, 9vw, 8rem) clamp(1rem, 5vw, 4rem);
+}
+
+.hero {
+  min-height: 100svh;
+  align-items: end;
+  padding-bottom: max(5rem, 14vh);
+}
+
+.hero__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 58% 22%, rgba(246, 240, 223, 0.08), transparent 19rem),
+    linear-gradient(180deg, rgba(9, 17, 34, 0.04), rgba(9, 17, 34, 0.9));
+}
+
+.hero__content {
+  position: relative;
+  width: min(760px, 100%);
+}
+
+.hero__content p {
+  max-width: 42rem;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 1.8rem;
+}
+
+.scroll-mark {
+  position: absolute;
+  left: 50%;
+  bottom: 1.5rem;
+  width: 1.5rem;
+  height: 2.6rem;
+  border: 1px solid rgba(246, 240, 223, 0.36);
+  border-radius: 999px;
+  transform: translateX(-50%);
+}
+
+.scroll-mark span {
+  position: absolute;
+  left: 50%;
+  top: 0.45rem;
+  width: 0.28rem;
+  height: 0.28rem;
+  border-radius: 50%;
+  background: var(--gold);
+  animation: scrollDot 1.6s ease infinite;
+}
+
+.section-inner {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.message {
+  background:
+    linear-gradient(180deg, rgba(9, 17, 34, 0.86), rgba(16, 26, 49, 0.95)),
+    radial-gradient(circle at 15% 20%, rgba(106, 216, 206, 0.12), transparent 26rem);
+}
+
+.message__grid,
+.rite__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+  gap: clamp(2rem, 7vw, 5rem);
+  align-items: center;
+}
+
+.letter,
+.finale__box {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: clamp(1.6rem, 4vw, 2.6rem) 0;
+}
+
+.section-heading {
+  max-width: 760px;
+  margin-bottom: clamp(2rem, 5vw, 3.5rem);
+}
+
+.blessings {
+  background:
+    radial-gradient(circle at 85% 18%, rgba(242, 198, 109, 0.12), transparent 28rem),
+    linear-gradient(180deg, rgba(16, 26, 49, 0.95), rgba(8, 13, 25, 0.96));
+}
+
+.seal-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.seal-grid button {
+  min-height: 5.3rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(246, 240, 223, 0.16);
+  border-radius: 8px;
+  color: var(--ink);
+  background:
+    linear-gradient(135deg, rgba(106, 216, 206, 0.08), rgba(242, 198, 109, 0.08)),
+    rgba(246, 240, 223, 0.04);
+  font: 700 clamp(0.76rem, 1.4vw, 0.95rem)/1.35 "Be Vietnam Pro", sans-serif;
+  cursor: pointer;
+  transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+}
+
+.seal-grid button.is-lit,
+.seal-grid button:hover {
+  transform: translateY(-4px);
+  border-color: rgba(242, 198, 109, 0.72);
+  background:
+    linear-gradient(135deg, rgba(106, 216, 206, 0.22), rgba(242, 198, 109, 0.28)),
+    rgba(246, 240, 223, 0.08);
+}
+
+.rite {
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 28% 44%, rgba(106, 216, 206, 0.16), transparent 24rem),
+    linear-gradient(180deg, #080d19, #101a31);
+}
+
+.sword-orbit {
+  position: relative;
+  width: min(74vw, 420px);
+  aspect-ratio: 1;
+  margin: 0 auto;
+  transform-style: preserve-3d;
+}
+
+.moon-disc {
+  position: absolute;
+  inset: 14%;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 42% 32%, rgba(255, 255, 255, 0.98), rgba(246, 240, 223, 0.48) 36%, transparent 66%),
+    radial-gradient(circle, rgba(106, 216, 206, 0.24), transparent 70%);
+  filter: drop-shadow(0 0 56px rgba(246, 240, 223, 0.48));
+}
+
+.blade {
+  position: absolute;
+  left: 50%;
+  top: 7%;
+  width: 0.82rem;
+  height: 86%;
+  border-radius: 999px;
+  background: linear-gradient(180deg, transparent, var(--ink) 12%, var(--jade) 52%, var(--gold) 88%, transparent);
+  box-shadow: 0 0 34px rgba(106, 216, 206, 0.9), 0 0 64px rgba(242, 198, 109, 0.28);
+  transform: translateX(-50%) rotate(36deg);
+}
+
+.ring {
+  position: absolute;
+  inset: 6%;
+  border: 0;
+  border-radius: 50%;
+  transform: rotate(var(--orbit-angle)) scaleY(0.36);
+  animation: orbitSpin var(--orbit-speed) linear infinite;
+}
+
+.ring::before {
+  content: "";
+  position: absolute;
+  top: -0.18rem;
+  left: 50%;
+  width: 4.8rem;
+  height: 0.36rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, rgba(246, 240, 223, 0.1), var(--orbit-color) 58%, transparent);
+  box-shadow: 0 0 16px var(--orbit-color), 0 0 34px rgba(246, 240, 223, 0.18);
+  transform: translateX(-50%);
+}
+
+.ring--one,
+.ring--four {
+  --orbit-color: var(--gold);
+}
+
+.ring--two,
+.ring--five {
+  --orbit-color: var(--jade);
+}
+
+.ring--three,
+.ring--six {
+  --orbit-color: var(--rose);
+}
+
+.ring--one {
+  --orbit-angle: 18deg;
+  --orbit-speed: 9s;
+}
+
+.ring--two {
+  --orbit-angle: 76deg;
+  --orbit-speed: 12s;
+  animation-direction: reverse;
+}
+
+.ring--three {
+  --orbit-angle: 132deg;
+  --orbit-speed: 10.5s;
+  inset: 10%;
+}
+
+.ring--four {
+  --orbit-angle: -28deg;
+  --orbit-speed: 14s;
+  inset: 14%;
+  animation-direction: reverse;
+}
+
+.ring--five {
+  --orbit-angle: 104deg;
+  --orbit-speed: 8s;
+  inset: 18%;
+}
+
+.ring--six {
+  --orbit-angle: 154deg;
+  --orbit-speed: 13s;
+  inset: 22%;
+  animation-direction: reverse;
+}
+
+.finale {
+  min-height: 92svh;
+  text-align: center;
+  background:
+    linear-gradient(rgba(7, 11, 19, 0.66), rgba(7, 11, 19, 0.88)),
+    url("assets/tien-hiep-hero.png") center bottom / cover no-repeat;
+}
+
+.finale__box {
+  max-width: 820px;
+}
+
+.signature {
+  color: var(--gold);
+  font-weight: 700;
+  margin: 1.5rem 0 2rem;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.gate-open .hero .reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.spark {
+  position: fixed;
+  z-index: 6;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 18px var(--gold);
+  pointer-events: none;
+  animation: burst 950ms ease-out forwards;
+}
+
+@keyframes drift {
+  from {
+    transform: translateX(-2%);
+  }
+  to {
+    transform: translateX(2%);
+  }
+}
+
+@keyframes scrollDot {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 0);
+  }
+  40% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    transform: translate(-50%, 1.1rem);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orbitSpin {
+  to {
+    transform: rotate(var(--orbit-angle)) scaleY(0.36) rotate(360deg);
+  }
+}
+
+@keyframes burst {
+  to {
+    opacity: 0;
+    transform: translate(var(--x), var(--y)) scale(0.2);
+  }
+}
+
+@keyframes hintPulse {
+  50% {
+    opacity: 0.62;
+    transform: translateY(4px);
+  }
+}
+
+@media (max-width: 860px) {
+  .message__grid,
+  .rite__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .seal-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .sword-orbit {
+    order: 2;
+  }
+}
+
+@media (max-width: 560px) {
+  .section-panel {
+    min-height: auto;
+    padding-block: 4.5rem;
+  }
+
+  .hero {
+    min-height: 100svh;
+  }
+
+  .gate__content {
+    padding: 1rem;
+  }
+
+  .hero__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .primary-action,
+  .ghost-action,
+  .audio-toggle {
+    width: 100%;
+    text-align: center;
+  }
+
+  .seal-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.65rem;
+  }
+
+  .seal-grid button {
+    min-height: 4.6rem;
+  }
+}

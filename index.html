@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thiên Bảo Thập Bát Niên Hoa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <canvas id="auraCanvas" aria-hidden="true"></canvas>
+
+  <div class="gate" id="gate">
+    <div class="gate__mist"></div>
+    <div class="gate__content">
+      <p class="eyebrow">Huynh trưởng Long Hari kính gửi</p>
+      <h1>Thiên Bảo<br />Thập Bát Tuế</h1>
+      <p class="gate__line">
+        Khánh hạ hiền đệ bước vào niên hoa thành niên.
+      </p>
+      <button class="primary-action" id="enterButton" type="button">
+        Khai Môn Khánh Hạ
+      </button>
+      <p class="gate__hint">
+        Chạm vào pháp môn để mở lời chúc sinh nhật
+      </p>
+    </div>
+  </div>
+
+  <main class="site-shell">
+    <section class="hero section-panel" id="hero">
+      <div class="hero__shade"></div>
+      <div class="hero__content reveal">
+        <p class="eyebrow">Long Hari gửi Thiên Bảo</p>
+        <h2>Thiên Bảo Thập Bát Niên Hoa</h2>
+        <p>
+          Hôm nay hiền đệ tròn mười tám, một mốc thành niên rực sáng như
+          minh nguyệt giữa tiên sơn. Huynh chúc đệ giữ vững bản tâm, mở rộng
+          chí khí, đi qua nhân sinh bằng sự tử tế, can đảm và an nhiên.
+        </p>
+        <div class="hero__actions">
+          <a href="#blessings" class="ghost-action">Nhận Linh Phúc</a>
+          <button class="audio-toggle" id="audioToggle" type="button">
+            Âm Nền: Tắt
+          </button>
+        </div>
+      </div>
+      <div class="scroll-mark" aria-hidden="true">
+        <span></span>
+      </div>
+    </section>
+
+    <section class="message section-panel">
+      <div class="section-inner message__grid">
+        <div class="reveal">
+          <p class="eyebrow">Chúc thư</p>
+          <h2>Gửi hiền đệ Thiên Bảo</h2>
+        </div>
+        <article class="letter reveal">
+          <p>Thiên Bảo hiền đệ,</p>
+          <p>
+            Từ hôm nay, đệ không chỉ thêm một tuổi, mà còn thêm một phần bản
+            lĩnh để tự chọn đạo lộ của mình. Tuổi mười tám là cánh cửa lớn:
+            có ước mơ cần theo đuổi, có thử thách cần vượt qua, có gia đình
+            luôn dõi theo và tin tưởng.
+          </p>
+          <p>
+            Huynh Long Hari chúc đệ tâm sáng như minh nguyệt, chí vững như
+            tiên sơn, thân an, trí mở, học nghiệp hanh thông, vạn sự khai
+            vận. Dù mai sau đi xa đến đâu, mong đệ vẫn giữ được bản tâm lương
+            thiện và nụ cười của chính mình.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="blessings section-panel" id="blessings">
+      <div class="section-inner">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Thập bát linh ấn</p>
+          <h2>Mười tám lời phúc nguyện</h2>
+        </div>
+        <div class="seal-grid" id="sealGrid">
+          <button>Tâm An</button>
+          <button>Chí Lớn</button>
+          <button>Thân Khỏe</button>
+          <button>Trí Sáng</button>
+          <button>Học Thành</button>
+          <button>Gia An</button>
+          <button>Đạo Lộ Rộng</button>
+          <button>Bản Tâm Vững</button>
+          <button>Quý Nhân Phù Trợ</button>
+          <button>Vạn Sự Hanh Thông</button>
+          <button>Niềm Vui Đầy</button>
+          <button>Dũng Khí Bền</button>
+          <button>Ước Mơ Cao</button>
+          <button>Nghị Lực Sâu</button>
+          <button>Tương Lai Sáng</button>
+          <button>Huynh Đệ Tình Thâm</button>
+          <button>Thiện Tâm Luôn Giữ</button>
+          <button>Thành Niên Rực Rỡ</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="rite section-panel">
+      <div class="section-inner rite__grid">
+        <div class="sword-orbit reveal" aria-hidden="true">
+          <div class="moon-disc"></div>
+          <div class="blade"></div>
+          <div class="ring ring--one"></div>
+          <div class="ring ring--two"></div>
+          <div class="ring ring--three"></div>
+          <div class="ring ring--four"></div>
+          <div class="ring ring--five"></div>
+          <div class="ring ring--six"></div>
+        </div>
+        <div class="rite__copy reveal">
+          <p class="eyebrow">Thành niên chi khắc</p>
+          <h2>Một chương mới khai mở</h2>
+          <p>
+            Tuổi mười tám là lúc Thiên Bảo tự nâng kiếm ý của mình: biết
+            thương người, biết thương mình, biết chịu trách nhiệm với điều đã
+            chọn và biết đứng dậy sau mỗi lần chưa trọn vẹn.
+          </p>
+          <p>
+            Huynh mong đệ không cần trở thành ai khác. Chỉ cần mỗi năm đều
+            tốt hơn chính mình một chút, thì đạo lộ ấy đã đủ sáng.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="finale section-panel">
+      <div class="section-inner finale__box reveal">
+        <p class="eyebrow">Lời cuối từ huynh trưởng</p>
+        <h2>Khánh Hạ Thiên Bảo Thành Niên</h2>
+        <p>
+          Bảo à, chúc em sinh nhật tuổi mười tám thật đáng nhớ. Mong em luôn
+          mạnh mẽ, tử tế, vui vẻ, yêu gia đình, tin vào bản thân và sống một
+          đời có ánh sáng riêng.
+        </p>
+        <p class="signature">Huynh trưởng Long Hari</p>
+        <button class="primary-action" id="wishButton" type="button">
+          Khai Phóng Linh Quang
+        </button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
